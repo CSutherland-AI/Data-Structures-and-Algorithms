@@ -1,0 +1,34 @@
+ """
+ Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. 
+ """
+ 
+ def longestConsecutive(self, nums: List[int]) -> int:
+        
+        #store in  a set as you go
+        #check each time if the number before or after current one exists
+        #if it does, then does the same for that number until condition is false
+        #compare sequence len to maxlen
+        
+        
+        maxlen=0    
+        seen=set()
+        starters=[]
+        for element in nums:            
+            seen.add(element)
+        
+        
+        #for each, check if it has a left neighbor, if it doesn't then it is a starter
+        # if num is a starter, keep looking fornums counting up while they exist if condition is true
+        
+        for num in nums:
+            
+            #if num is a starter, then continue checking, if not, do nothing
+            currlen=1
+            if num-1 not in seen:
+                starter=num
+                while starter+1 in seen:
+                    currlen+=1
+                    starter+=1
+                maxlen=max(maxlen,currlen)
+                
+        return maxlen
