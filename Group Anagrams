@@ -1,0 +1,31 @@
+"""
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+"""
+
+
+
+
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:        
+        from collections import defaultdict       
+        
+        #For each word, form bag of chars representation if it doesn't exist
+           #if it exists, add word to list of values, otherwise create new dict entry        
+        #print list of list of values
+        #store all in dictionary
+        
+        words=defaultdict(list)
+     
+        for string in strs:
+            
+            #character collection
+            
+            chars=[0]*26
+            for char in string:
+                chars[ord(char)-ord("a")]+=1      
+            chars= tuple(chars)
+            words[chars].append(string)
+            
+        return words.values()
