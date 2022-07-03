@@ -1,0 +1,48 @@
+ if not list1 or not list2:
+            return list1 if list1 else list2
+        
+       """
+       Merges two sorted linked lists into one list in-place   
+       
+       
+       """
+       
+       
+       
+       
+       
+       if list1.val<list2.val:
+            current=list1         
+            target=list2
+            
+        else:
+            current=list2
+            target=list1
+      
+        head=current
+        while target:
+             
+            if current.next:
+                #insert target node
+                if current.next.val> target.val:
+                    nexttarget=target.next
+                    newnext=current.next
+                    current.next=target
+                    target.next=newnext
+                    target=nexttarget
+                    
+                current=current.next
+            #if reach end of first list
+            if current.next==None:
+                
+                
+                current.next=target
+                nexttarget=target.next
+                current=current.next
+                current.next=None
+                target=nexttarget if target is not current.next else None
+        
+        return head
+            
+            
+           
