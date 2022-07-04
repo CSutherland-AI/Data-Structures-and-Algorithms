@@ -1,0 +1,38 @@
+"""
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+ 
+"""
+def validParentheses(s):
+
+  parammap={
+            
+            "(":")",
+            "[":"]",
+            "{":"}" 
+        }
+        
+        stack=[]
+        for char in s:
+            #if opening
+            if char in parammap:
+                stack.append(parammap[char])
+            #if closing
+            else:
+                if len(stack)==0: return False 
+                #if it's a closing bracket but not the closing bracket that should come next
+                if stack.pop()!= char:
+                    return False
+        #if unclosed brackets remain
+        if len(stack)!=0:
+            return False
+        
+        return True
+  
+  
+
+ 
