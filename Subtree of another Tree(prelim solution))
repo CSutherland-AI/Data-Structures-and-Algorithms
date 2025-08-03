@@ -1,0 +1,45 @@
+ def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        '''
+        R:res= True if root contains subRoot in its structure
+        True if:
+        root and subroot are same tree
+        left tree contains subroot
+        right tree constains subroot   
+        '''
+        def isSame(p,q):
+            #base case
+            #one is null
+            if (not p and q) or (not q and p):
+                return False
+            #both null
+            if not (p and q):
+                return True
+            #recursive case
+            lres=isSame(p.left,q.left)
+            rres=isSame(p.right,q.right)
+            rootsame=p.val==q.val
+            if lres and rres and rootsame:
+                return True
+            return False
+
+
+
+
+        #base case
+        #one null
+        if not root and subroot:
+            return False
+        if not subRoot and root:
+            return True
+        #both null
+        if not(subroot and root):
+            return True
+
+        #recrusive case
+        leftcontains=self.isSubtree(root.left,subRoot)
+        rightcontains=self.isSubtree(root.right,subRoot)
+        #true if root and subroot are same tree
+        rootcontains= isSame(root,subRoot)        
+        if rootcontains or leftcontains or rightcontains:
+            return True
+        return False
